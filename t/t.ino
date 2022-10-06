@@ -1,5 +1,8 @@
 void setup() {
-  // put your setup code here, to run once:
+  int var = 1;
+  if(var == 1){
+    var = 2;
+  }
 
 }
 
