@@ -3,7 +3,11 @@ void setup() {
   if(var == 1){
     var = 2;
   }
+}
 
+void HappySmile(void){
+  int neko = 0;
+  Seria.println(neko);
 }
 
 void loop() {konnnnitiha---
