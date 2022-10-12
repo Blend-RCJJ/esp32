@@ -1,16 +1,31 @@
+#include "BluetoothSerial.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+
 void setup() {
-  int var = 1;
-  if(var == 1){
-    var = 2;
+  Serial.begin(115200);
+  SerialBT.begin("ESP32test");
+  Serial.println("device start");
+  pinMode(13, OUTPUT);
+}
+
+char databox;
+void loop() {
+
+  if (SerialBT.available()) {
+    databox = SerialBT.read();
+    Serial.println(databox);
+
+    if (databox == 'L') {
+      digitalWrite(13, LOW);
+    }
+    if (databox == 'T') {
+      digitalWrite(13, HIGH);
+    }
   }
-}
-
-void HappySmile(void){
-  int neko = 0;
-  Seria.println(neko);
-}
-
-void loop() {konnnnitiha---
-  // put your main code here, to run repeatedly:
-
+  delay(20);
 }
