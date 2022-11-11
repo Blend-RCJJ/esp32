@@ -1,31 +1,10 @@
-#include "BluetoothSerial.h"
-
-#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
-#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
-#endif
-
-BluetoothSerial SerialBT;
-
 void setup() {
-  Serial.begin(115200);
-  SerialBT.begin("ESP32test");
-  Serial.println("device start");
-  pinMode(13, OUTPUT);
+  pinMode(5, OUTPUT);//5番ピンを出力に設定
 }
 
-char databox;
 void loop() {
-
-  if (SerialBT.available()) {
-    databox = SerialBT.read();
-    Serial.println(databox);
-
-    if (databox == 'L') {
-      digitalWrite(13, LOW);
-    }
-    if (databox == 'T') {
-      digitalWrite(13, HIGH);
-    }
-  }
-  delay(20);
+  digitalWrite(5, HIGH);//5番ピンの出力をHIGH(5V)に設定
+  delay(1000);//1000msec待機(1秒待機)
+  digitalWrite(5, LOW);//5番ピンの出力をLOW(0V)に設定
+  delay(1000);//1000msec待機(1秒待機)
 }
