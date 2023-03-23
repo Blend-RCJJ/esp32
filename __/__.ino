@@ -2,10 +2,6 @@
 #include <BLEServer.h>
 #include <BLEUtils.h>
 #include <BLE2902.h>
-//#include <HardwareSerial.h>
-//
-//HardwareSerial uart0(0);
-//HardwareSerial uart1(1);
 
 #define BUFFER 64
 
@@ -52,8 +48,6 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
 void setup() {
   Serial.begin(115200);
-//
-//  uart0.begin(115200,SERIAL=8N1,-1,-1);
 
   // Create the BLE Device
   BLEDevice::init("BLE UART");
@@ -96,7 +90,6 @@ void loop() {
     if(Serial.available() != 0)
     {
       size_t bufSize = Serial.read(txValue, Serial.available());
-      Serial.println(txValue[0]);
       pTxCharacteristic->setValue(txValue, bufSize);
       pTxCharacteristic->notify();
     }
